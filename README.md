@@ -84,5 +84,5 @@ For PipEA we used the code of the original paper [PipEA](https://github.com/wyy-
 
 ```bash
 cd statistics
-python main.py
+python analysis.py
 ```
