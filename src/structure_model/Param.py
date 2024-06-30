@@ -1,4 +1,4 @@
-DATASET = "D_W_15K_V1"
+DATASET = "D_W_15K_V2"
 
 if DATASET == "D_W_15K_V1":
     KG1_PATH_FOR_NAMES = 'DBpedia_names.xlsx'

@@ -6,9 +6,27 @@ import torch
 import os
 import matplotlib.pyplot as plt
 import sys
-from calculate_performance import *
-from calculate_cummulative import *
 import pickle
+from Param import MODE, DATA
+
+def recreate_folder(folder_path):
+    # Check if the folder exists
+    if os.path.exists(folder_path):
+        # Delete all files inside the folder
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                print(f'Failed to delete {file_path}. Reason: {e}')
+    else:
+        # Create the folder if it does not exist
+        os.makedirs(folder_path)
+    
+    print(f'{folder_path} has been recreated and is now empty.')
 
 def get_item(x):
     if torch.is_tensor(x):
@@ -26,48 +44,56 @@ def reciprocity(ents_1, ents_2, res_mat_1, res_mat_2):
     return pairs
 
 
-def main(args):
+def main():
 
-    print(args[1])
-    print(DATASET)
+    mode = MODE
+    dataset = DATA
+    print(dataset)
     
-    MYPATH = "experiments/" + DATASET + "_" + args[1]
-    if not os.path.exists(MYPATH):
-        os.makedirs(MYPATH)
+    MYPATH = "experiments/" + dataset + "_" + mode
+    recreate_folder(MYPATH)
 
-    if args[1] == "Hybea":
+    if mode == "Hybea":
         turn = 2
         stop_structure = False
         stop_attribute = False
         stop_first_iteration = False
-    elif args[1] == "Hybea_struct_first":
+    elif mode == "Hybea_struct_first":
         turn = 1
         stop_structure = False
         stop_attribute = False
         stop_first_iteration = False
-    elif args[1] == "Hybea_without_structure":
+    elif mode == "Hybea_without_structure":
         turn = 2
         stop_structure = False
         stop_attribute = True
         stop_first_iteration = False
-    elif args[1] == "Hybea_without_factual":
+    elif mode == "Hybea_without_factual":
         turn = 1
         stop_structure = True
         stop_attribute = False
         stop_first_iteration = False
-    elif args[1] == "Hybea_basic":
+    elif mode == "Hybea_basic":
         turn = 2
         stop_structure = False
         stop_attribute = False
         stop_first_iteration = True
-    elif args[1] == "Hybea_basic_structure_first":
+    elif mode == "Hybea_basic_structure_first":
         turn = 1
         stop_structure = False
         stop_attribute = False
         stop_first_iteration = True
+    else:
+        print("Wrong mode !")
+        exit()
 
     added_ents_of_KG1 = set()
     while True:
+
+        if mode == "Hybea_basic" and turn == 4:
+            exit()
+        elif mode == "Hybea_basic_structure_first" and turn == 3:
+            exit()
         
         new_pairs = set()
         
@@ -124,7 +150,6 @@ def main(args):
                 pickle.dump(res_mat_1, file)
 
             if stop_attribute:
-                calc_hits(DATASET, MYPATH, mode)
                 exit()
             
             turn += 1
@@ -144,7 +169,7 @@ def main(args):
             newp_struct = []
             for i in range(3):
                 if os.path.exists(MYPATH + "/" + "rec_new_pairs_from_structure" + str(i) + ".pickle"):
-                    with open("rec_new_pairs_from_structure" + str(i) + ".pickle", "rb") as file:
+                    with open(MYPATH + "/" + "rec_new_pairs_from_structure" + str(i) + ".pickle", "rb") as file:
                         newp_struct_pickle = list(pickle.load(file))
                                         
                     for pair in newp_struct_pickle:
@@ -177,20 +202,18 @@ def main(args):
             with open(MYPATH + "/" + "rec_new_pairs_from_structure" + str(index) + ".pickle", "wb") as file:
                 pickle.dump(new_pairs, file)
                 
-            with open("res_mat_1_struct" + str(index) + ".pickle", "wb") as file:
+            with open(MYPATH + "/" + "res_mat_1_struct" + str(index) + ".pickle", "wb") as file:
                 pickle.dump(res_mat_1, file)
 
             if stop_structure:
-                calc_hits(DATASET, MYPATH, mode)
                 exit()
 
             turn += 1
 
             
-        if len(new_pairs) == 0 or stop_first_iteration:
+        if len(new_pairs) == 0:
             break
     
-    calc_hits(DATASET, MYPATH + "/", mode)
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

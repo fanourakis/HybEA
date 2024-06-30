@@ -1,6 +1,7 @@
 import os
 import pickle
 import numpy as np
+import sys
 
 def calc_hits(DATASET, MYPATH, mode):
     
@@ -37,7 +38,8 @@ def calc_hits(DATASET, MYPATH, mode):
         with open(MYPATH + "res_mat_1_attr0.pickle", "rb") as file:
             res_mat_1 = pickle.load(file).detach().cpu().numpy()
     else:
-        print("Not correct mode")
+        print("Wrong mode !")
+        exit()
 
     index = 0
     while os.path.exists(MYPATH + "/" + "rec_new_pairs_from_structure" + str(index) + ".pickle"):
@@ -51,6 +53,10 @@ def calc_hits(DATASET, MYPATH, mode):
 
         for t in temp:
             newp_struct_list.append(t)
+
+    index = 0
+    while os.path.exists(MYPATH + "/" + "rec_new_pairs_from_attr" + str(index) + ".pickle"):
+        index += 1
 
     newp_attr_list = []
     for i in range(0, index):
@@ -103,3 +109,12 @@ def calc_hits(DATASET, MYPATH, mode):
     print("MRR: " + str(MRR/total))
     
     print(str(cn) + " out of " + str(len(set(newp_struct_list).union(set(newp_attr_list)))) + " new proposed pairs are correct")
+
+if __name__ == "__main__":
+    
+    args = sys.argv
+    DATASET = args[1]
+    MYPATH = args[2]
+    mode = args[3]
+
+    calc_hits(DATASET, MYPATH, mode)
