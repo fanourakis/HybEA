@@ -40,7 +40,7 @@ python main.py
 cd src
 python main.py
 ```
-3. In case of Hybea, Hybea_struct_first, Hybea_basic, Hybea_basic_structure_first there is a need of calculation the final performance (see Calculate final performance instructions below).
+5. In case of Hybea, Hybea_struct_first, Hybea_basic, Hybea_basic_structure_first there is a need of calculation the final performance (see Calculate final performance instructions below).
 
 ### Calculate final performance of HybEA or its' variations
 
