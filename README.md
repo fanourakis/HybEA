@@ -3,14 +3,9 @@
 The source code of the paper:
 N. Fanourakis, F. Lekbour, V. Efthymiou, G. Renton, V. Christophides: HybEA: Hybrid Attention Models for Entity Alignment
 
-## Dataset License
-
-Due to licensing we are not allowed to distribute the dataset bbc-db.
-To run the experiments, please download [bbc-db](https://www.csd.uoc.gr/~vefthym/minoanER/datasets.html)
-
 ## Getting Started
 
-1. Install Anaconda 4.14.0
+Install Anaconda 4.14.0
 
 ### Installation instructions
 

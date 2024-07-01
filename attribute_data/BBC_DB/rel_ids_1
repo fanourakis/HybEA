@@ -1,0 +1,9 @@
+0	http://xmlns.com/foaf/0.1/maker
+1	http://purl.org/ontology/mo/member
+2	http://purl.org/ontology/mo/member_of
+3	http://purl.org/vocab/relationship/siblingof
+4	http://purl.org/vocab/relationship/spouseof
+5	http://purl.org/vocab/relationship/parentof
+6	http://purl.org/vocab/relationship/childof
+7	http://purl.org/vocab/relationship/closefriendof
+8	http://xmlns.com/foaf/0.1/made
