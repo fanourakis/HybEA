@@ -53,7 +53,7 @@ def measures(DATASET, model, iteration, MYPATH):
  
 def calc_measures(DATASET, MYPATH):
 
-    cpr = 1
+    cpr = 0
     crec = 0
 
     test_set = []
@@ -102,6 +102,7 @@ def calc_measures(DATASET, MYPATH):
         # print("fn: " + str(len(fn)))
     
         precision = len(tp) / (len(tp) + len(fp))
+        cpr += precision
         recall = len(tp) / (len(tp) + len(fn))
         f1_score = (2 * precision * recall) / (precision + recall)
         crec += recall
@@ -109,7 +110,7 @@ def calc_measures(DATASET, MYPATH):
         print("recall: " + str(recall))
         print("f1_score: " + str(f1_score))
         print()
-
+    cpr = cpr / 2
     print("cummulative")
     print("\nprecision: " + str(cpr))
     print("recall: " + str(crec))
