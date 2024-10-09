@@ -18,7 +18,7 @@ TEST_BATCH_SIZE = 128
 
 FOLD = "2"
 
-# Choose between D_W_15K_V1, D_W_15K_V2, SRPRS_D_W_15K_V1, SRPRS_D_W_15K_V2, BBC_DB
+# Choose between D_W_15K_V1, D_W_15K_V2, SRPRS_D_W_15K_V1, SRPRS_D_W_15K_V2, BBC_DB, fr_en, ja_en, zh_en
 DATASET = "D_W_15K_V2"
 
 CSLS = 2
