@@ -103,6 +103,30 @@ def prepare_entity_alignment_data(args, new_pairs):
             return 1
         else:
             return 2
+        
+    def custom_sort_key_fr_en(entity):
+        if 'http://fr.dbpedia' in entity:
+            return 0
+        elif 'http://dbpedia.org' in entity:
+            return 1
+        else:
+            return 2
+        
+    def custom_sort_key_ja_en(entity):
+        if 'http://ja.dbpedia' in entity:
+            return 0
+        elif 'http://dbpedia.org' in entity:
+            return 1
+        else:
+            return 2
+        
+    def custom_sort_key_zh_en(entity):
+        if 'http://zh.dbpedia' in entity:
+            return 0
+        elif 'http://dbpedia.org' in entity:
+            return 1
+        else:
+            return 2
 
     entities_list = sorted(list(entities_set))
     relations_list = sorted(list(relations_set))
@@ -110,6 +134,18 @@ def prepare_entity_alignment_data(args, new_pairs):
     if args.dataset == "BBC_DB":
         entities_list = sorted(list(entities_set), key=custom_sort_key)
         relations_list = sorted(list(relations_set), key=custom_sort_key)
+        
+    if args.dataset == "fr_en":
+        entities_list = sorted(list(entities_set), key=custom_sort_key_fr_en)
+        relations_list = sorted(list(relations_set), key=custom_sort_key_fr_en)
+        
+    if args.dataset == "ja_en":
+        entities_list = sorted(list(entities_set), key=custom_sort_key_ja_en)
+        relations_list = sorted(list(relations_set), key=custom_sort_key_ja_en)
+        
+    if args.dataset == "zh_en":
+        entities_list = sorted(list(entities_set), key=custom_sort_key_zh_en)
+        relations_list = sorted(list(relations_set), key=custom_sort_key_zh_en)
 
     args.vocab_size = 100 + len(entities_list) + len(relations_list)
     args.num_relations = len(relations_list)

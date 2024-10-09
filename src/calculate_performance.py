@@ -44,6 +44,9 @@ def calc_hits(DATASET, MYPATH, mode):
     index = 0
     while os.path.exists(MYPATH + "/" + "rec_new_pairs_from_structure" + str(index) + ".pickle"):
         index += 1
+        
+    if mode == "Hybea_basic" or mode == "Hybea_basic_structure_first":
+        index = 1
     
     newp_struct_list = []
     for i in range(0, index):
@@ -57,6 +60,9 @@ def calc_hits(DATASET, MYPATH, mode):
     index = 0
     while os.path.exists(MYPATH + "/" + "rec_new_pairs_from_attr" + str(index) + ".pickle"):
         index += 1
+
+    if mode == "Hybea_basic" or mode == "Hybea_basic_structure_first":
+        index = 1
 
     newp_attr_list = []
     for i in range(0, index):

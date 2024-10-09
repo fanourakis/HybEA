@@ -62,6 +62,30 @@ def run_gen_sent_embs():
         names2 = pd.read_excel('./entity_names/' + dataset + '/Wikidata_names.xlsx', index_col=0)
         ids_to_names2 = dict(zip(names2["e1"], names2["name"]))
         
+    elif dataset == "fr_en":
+
+        names1 = pd.read_excel('./entity_names/' + dataset + '/fr_names.xlsx', index_col=0)
+        ids_to_names1 = dict(zip(names1["e1"], names1["name"]))
+            
+        names2 = pd.read_excel('./entity_names/' + dataset + '/en_names.xlsx', index_col=0)
+        ids_to_names2 = dict(zip(names2["e1"], names2["name"]))
+        
+    elif dataset == "ja_en":
+
+        names1 = pd.read_excel('./entity_names/' + dataset + '/ja_names.xlsx', index_col=0)
+        ids_to_names1 = dict(zip(names1["e1"], names1["name"]))
+            
+        names2 = pd.read_excel('./entity_names/' + dataset + '/en_names.xlsx', index_col=0)
+        ids_to_names2 = dict(zip(names2["e1"], names2["name"]))
+        
+    elif dataset == "zh_en":
+
+        names1 = pd.read_excel('./entity_names/' + dataset + '/zh_names.xlsx', index_col=0)
+        ids_to_names1 = dict(zip(names1["e1"], names1["name"]))
+            
+        names2 = pd.read_excel('./entity_names/' + dataset + '/en_names.xlsx', index_col=0)
+        ids_to_names2 = dict(zip(names2["e1"], names2["name"]))
+        
     sentences = []
     randoms = []
     for id in ids_to_names1:

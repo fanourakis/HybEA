@@ -15,11 +15,19 @@ elif DATASET == "SRPRS_D_W_15K_V1":
 elif DATASET == "SRPRS_D_W_15K_V2":
     KG1_PATH_FOR_NAMES = 'DBpedia_names.xlsx'
     KG2_PATH_FOR_NAMES = 'Wikidata_names.xlsx'
-
+elif DATASET == "fr_en":
+    KG1_PATH_FOR_NAMES = 'fr_names.xlsx'
+    KG2_PATH_FOR_NAMES = 'en_names.xlsx'
+elif DATASET == "ja_en":
+    KG1_PATH_FOR_NAMES = 'ja_names.xlsx'
+    KG2_PATH_FOR_NAMES = 'en_names.xlsx'
+elif DATASET == "zh_en":
+    KG1_PATH_FOR_NAMES = 'zh_names.xlsx'
+    KG2_PATH_FOR_NAMES = 'en_names.xlsx'
 
 TASK = "entity-alignment"
 
-RANDOM_INITIALIZATION = False
+RANDOM_INITIALIZATION = True
 if RANDOM_INITIALIZATION:
     HIDDEN_SIZE = 256
 else:
@@ -66,3 +74,12 @@ elif DATASET == "SRPRS_D_W_15K_V1":
 elif DATASET == "SRPRS_D_W_15K_V2":
     VOC_LIM_1 = 15100
     VOC_LIM_2 = 27100
+elif DATASET == "fr_en":
+    VOC_LIM_1 = 19761
+    VOC_LIM_2 = 36754
+elif DATASET == "ja_en":
+    VOC_LIM_1 = 19914
+    VOC_LIM_2 = 36694
+elif DATASET == "zh_en":
+    VOC_LIM_1 = 19488
+    VOC_LIM_2 = 36060

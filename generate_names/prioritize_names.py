@@ -174,6 +174,67 @@ def run_prioritize():
             # path to dataframes with entity names
             kg1_dest_path = "entity_names/" + dataset + "/DBpedia_names.xlsx"
             kg2_dest_path = "entity_names/" + dataset + "/Wikidata_names.xlsx"
+            
+    elif dataset == "fr_en":
+        
+        url_priority_1 = True
+        url_priority_2 = True
+        
+        random_init_flag_1 = False
+        random_init_flag_2 = False
+        
+        prior_attr_1 = ["http://fr.dbpedia.org/property/titre", "http://xmlns.com/foaf/0.1/name", "http://fr.dbpedia.org/property/name", "http://fr.dbpedia.org/property/label"]
+
+        prior_attr_2 = ["http://dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://dbpedia.org/property/name",  "http://xmlns.com/foaf/0.1/givenName", "http://dbpedia.org/ontology/birthName", "http://dbpedia.org/property/label"]
+
+        # paths to dataframes exported by name_analysis.py
+        kg1_src_path = "entity_names/" + dataset + "/fr_analysis.xlsx"
+        kg2_src_path = "entity_names/" + dataset + "/en_analysis.xlsx"
+
+        # path to dataframes with entity names
+        kg1_dest_path = "entity_names/" + dataset + "/fr_names.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/en_names.xlsx"
+        
+        
+    elif dataset == "ja_en":
+        
+        url_priority_1 = False
+        url_priority_2 = False
+        
+        random_init_flag_1 = True
+        random_init_flag_2 = False
+        
+        prior_attr_1 = ["http://ja.dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://ja.dbpedia.org/property/name", "http://xmlns.com/foaf/0.1/givenName", "http://ja.dbpedia.org/property/label"]
+
+        prior_attr_2 = ["http://dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://dbpedia.org/property/name",  "http://xmlns.com/foaf/0.1/givenName", "http://dbpedia.org/property/label"]
+
+        # paths to dataframes exported by name_analysis.py
+        kg1_src_path = "entity_names/" + dataset + "/ja_analysis.xlsx"
+        kg2_src_path = "entity_names/" + dataset + "/en_analysis.xlsx"
+
+        # path to dataframes with entity names
+        kg1_dest_path = "entity_names/" + dataset + "/ja_names.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/en_names.xlsx"
+        
+    elif dataset == "zh_en":
+        
+        url_priority_1 = False
+        url_priority_2 = False
+        
+        random_init_flag_1 = True
+        random_init_flag_2 = False
+        
+        prior_attr_1 = ["http://zh.dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://ja.dbpedia.org/property/name", "http://xmlns.com/foaf/0.1/givenName", "http://ja.dbpedia.org/property/label"]
+
+        prior_attr_2 = ["http://dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://dbpedia.org/property/name",  "http://xmlns.com/foaf/0.1/givenName", "http://dbpedia.org/property/label"]
+
+        # paths to dataframes exported by name_analysis.py
+        kg1_src_path = "entity_names/" + dataset + "/zh_analysis.xlsx"
+        kg2_src_path = "entity_names/" + dataset + "/en_analysis.xlsx"
+
+        # path to dataframes with entity names
+        kg1_dest_path = "entity_names/" + dataset + "/zh_names.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/en_names.xlsx"
 
     names_df_1 = pd.read_excel(kg1_src_path)
     names_df_2 = pd.read_excel(kg2_src_path)

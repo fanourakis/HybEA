@@ -99,7 +99,34 @@ def run_name_analysis():
 
         kg1_dest_path = "entity_names/" + dataset + "/DBpedia_analysis.xlsx"
         kg2_dest_path = "entity_names/" + dataset + "/Wikidata_analysis.xlsx"
+    
+    elif dataset == "fr_en":
+        
+        attrs_1 = ["http://fr.dbpedia.org/property/titre", "http://xmlns.com/foaf/0.1/name", "http://fr.dbpedia.org/property/name", "http://fr.dbpedia.org/property/label"]
 
+        attrs_2 = ["http://dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://dbpedia.org/property/name",  "http://xmlns.com/foaf/0.1/givenName", "http://dbpedia.org/ontology/birthName", "http://dbpedia.org/property/label"]
+
+        kg1_dest_path = "entity_names/" + dataset + "/fr_analysis.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/en_analysis.xlsx"
+        
+    elif dataset == "ja_en":
+        
+        attrs_1 = ["http://ja.dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://ja.dbpedia.org/property/name", "http://xmlns.com/foaf/0.1/givenName", "http://ja.dbpedia.org/property/label"]
+
+        attrs_2 = ["http://dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://dbpedia.org/property/name",  "http://xmlns.com/foaf/0.1/givenName", "http://dbpedia.org/property/label"]
+
+        kg1_dest_path = "entity_names/" + dataset + "/ja_analysis.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/en_analysis.xlsx"
+        
+    elif dataset == "zh_en":
+        
+        attrs_1 = ["http://zh.dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://ja.dbpedia.org/property/name", "http://xmlns.com/foaf/0.1/givenName", "http://ja.dbpedia.org/property/label"]
+
+        attrs_2 = ["http://dbpedia.org/property/title", "http://xmlns.com/foaf/0.1/name", "http://dbpedia.org/property/name",  "http://xmlns.com/foaf/0.1/givenName", "http://dbpedia.org/property/label"]
+
+        kg1_dest_path = "entity_names/" + dataset + "/zh_analysis.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/en_analysis.xlsx"
+    
     create_folder_if_not_exists("entity_names/" + dataset)
 
     print("Preparing name analysis on KG1 ...")

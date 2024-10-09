@@ -43,5 +43,17 @@ elif DATASET == "SRPRS_D_W_15K_V2":
     TOPK = 1000
     INPUT_SIZE_1 = 256
     INPUT_SIZE_2 = 531
+elif DATASET == "fr_en":
+    TOPK = 1000
+    INPUT_SIZE_1 = 4544
+    INPUT_SIZE_2 = 6420
+elif DATASET == "ja_en":
+    TOPK = 1000
+    INPUT_SIZE_1 = 5878
+    INPUT_SIZE_2 = 6063
+elif DATASET == "zh_en":
+    TOPK = 1000
+    INPUT_SIZE_1 = 8183
+    INPUT_SIZE_2 = 7170
 
 DATA_PATH = r"../attribute_data/" + DATASET + "/"

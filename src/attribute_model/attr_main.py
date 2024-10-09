@@ -31,6 +31,24 @@ def run(new_pairs):
     ent_ill, train_ill, test_ill, valid_ill, \
     index2rel, index2entity, rel2index, entity2index, \
     ent2data, rel_triples_1, rel_triples_2 = read_data()
+    
+    # ent2data_types = ent2data[1]
+    # entid2data = ent2data[0]
+    # result = set()
+    # for lst in ent2data_types.values():
+    #     for x in lst:
+    #         result.add(x)
+    # print(len(result))
+
+    # ent2data_types = ent2data[3]
+    # entid2data = ent2data[2]
+    # result = set()
+    # for lst in ent2data_types.values():
+    #     for x in lst:
+    #         result.add(x)
+    # print(len(result))
+    # exit()
+    
     print("---------------------------------------")
 
     print("all entity ILLs num:",len(ent_ill))

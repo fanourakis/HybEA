@@ -12,16 +12,17 @@ from Param import MODE, DATA
 def recreate_folder(folder_path):
     # Check if the folder exists
     if os.path.exists(folder_path):
-        # Delete all files inside the folder
-        for filename in os.listdir(folder_path):
-            file_path = os.path.join(folder_path, filename)
-            try:
-                if os.path.isfile(file_path) or os.path.islink(file_path):
-                    os.unlink(file_path)
-                elif os.path.isdir(file_path):
-                    shutil.rmtree(file_path)
-            except Exception as e:
-                print(f'Failed to delete {file_path}. Reason: {e}')
+        print("Folder already exists")
+        exit()
+        # for filename in os.listdir(folder_path):
+        #     file_path = os.path.join(folder_path, filename)
+        #     try:
+        #         if os.path.isfile(file_path) or os.path.islink(file_path):
+        #             os.unlink(file_path)
+        #         elif os.path.isdir(file_path):
+        #             shutil.rmtree(file_path)
+        #     except Exception as e:
+        #         print(f'Failed to delete {file_path}. Reason: {e}')
     else:
         # Create the folder if it does not exist
         os.makedirs(folder_path)
@@ -57,32 +58,30 @@ def main():
         turn = 2
         stop_structure = False
         stop_attribute = False
-        stop_first_iteration = False
+    elif mode == "Hybea_light":
+        turn = 8
+        stop_structure = False
+        stop_attribute = False
     elif mode == "Hybea_struct_first":
         turn = 1
         stop_structure = False
         stop_attribute = False
-        stop_first_iteration = False
     elif mode == "Hybea_without_structure":
         turn = 2
         stop_structure = False
         stop_attribute = True
-        stop_first_iteration = False
     elif mode == "Hybea_without_factual":
         turn = 1
         stop_structure = True
         stop_attribute = False
-        stop_first_iteration = False
     elif mode == "Hybea_basic":
         turn = 2
         stop_structure = False
         stop_attribute = False
-        stop_first_iteration = True
     elif mode == "Hybea_basic_structure_first":
         turn = 1
         stop_structure = False
         stop_attribute = False
-        stop_first_iteration = True
     else:
         print("Wrong mode !")
         exit()
