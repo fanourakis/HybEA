@@ -1,8 +1,5 @@
 # HybEA: Hybrid Attention Models for Entity Alignment
 
-The source code of the paper:
-N. Fanourakis, F. Lekbour, V. Efthymiou, G. Renton, V. Christophides: HybEA: Hybrid Attention Models for Entity Alignment
-
 ## Getting Started
 
 Install Anaconda 4.14.0
