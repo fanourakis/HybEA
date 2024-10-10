@@ -61,9 +61,8 @@ cd src
 python main.py
 ```
 
-### RREA, BERT-INT, PipEA
-For RREA and BERT-INT we used the code provided in [Knowledge Graph Embedding Methods for Entity Alignment: An Experimental Review](https://github.com/fanourakis/experimental-review-EA).
-For PipEA we used the code of the original paper [PipEA](https://github.com/wyy-code/PipEA)
+### RREA, BERT-INT, ZeroEA, SelfKG, PARIS+, PipEA
+For RREA, BERT-INT, ZeroEA, SelfKG, PARIS+, PipEA we used the code provided by the authors.
 
 ### Statistics of the datasets
 
