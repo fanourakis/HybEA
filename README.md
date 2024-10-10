@@ -39,7 +39,7 @@ python main.py
 ```bash
 python calculate_performance.py [DATASET] [PATH TO FILES FOR NEW PAIRS] [HYBEA OR ITS' VARIATION]
 # e.g.
-python calculate_performance.py D_W_15K_V1 experiments/D_W_15K_V1_Hybea/ Hybea
+python calculate_performance.py D_W_15K_V2 experiments/D_W_15K_V2_Hybea/ Hybea
 ```
 
 ### Calculate cummulative precision/recall/f1
@@ -47,7 +47,7 @@ python calculate_performance.py D_W_15K_V1 experiments/D_W_15K_V1_Hybea/ Hybea
 ```bash
 python calculate_cummulative.py [DATASET] [PATH TO FILES FOR NEW PAIRS]
 # e.g.
-python calculate_cummulative.py D_W_15K_V1 experiments/D_W_15K_V1_Hybea/
+python calculate_cummulative.py D_W_15K_V2 experiments/D_W_15K_V2_Hybea/
 ```
 
 ### Knowformer Baseline
