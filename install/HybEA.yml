@@ -110,4 +110,3 @@ dependencies:
     - urllib3==2.1.0
     - yarl==1.9.4
     - zipp==3.18.1
-prefix: /home/fanourakis/anaconda3/envs/HybEA
