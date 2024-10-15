@@ -64,10 +64,10 @@ Used code: https://github.com/nju-websoft/Knowformer
 
 ### Rest baselines
 
-RREA, BERT-INT and PARIS+: https://github.com/fanourakis/experimental-review-EA
-ZeroEA: https://github.com/Nan-Huo/ZeroEA
-SelfKG: https://github.com/THUDM/SelfKG/tree/main
-PipEA: https://github.com/wyy-code/PipEA
+1. RREA, BERT-INT and PARIS+: https://github.com/fanourakis/experimental-review-EA
+2. ZeroEA: https://github.com/Nan-Huo/ZeroEA
+3. SelfKG: https://github.com/THUDM/SelfKG/tree/main
+4. PipEA: https://github.com/wyy-code/PipEA
 
 ### Statistics of the datasets
 
