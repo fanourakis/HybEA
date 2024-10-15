@@ -60,9 +60,14 @@ python calculate_cummulative.py D_W_15K_V2 experiments/D_W_15K_V2_Hybea/
 cd src
 python main.py
 ```
+Used code: https://github.com/nju-websoft/Knowformer
 
-### RREA, BERT-INT, ZeroEA, SelfKG, PARIS+, PipEA
-For RREA, BERT-INT, ZeroEA, SelfKG, PARIS+, PipEA we used the code provided by the authors.
+### Rest baselines
+
+RREA, BERT-INT and PARIS+: https://github.com/fanourakis/experimental-review-EA
+ZeroEA: https://github.com/Nan-Huo/ZeroEA
+SelfKG: https://github.com/THUDM/SelfKG/tree/main
+PipEA: https://github.com/wyy-code/PipEA
 
 ### Statistics of the datasets
 
