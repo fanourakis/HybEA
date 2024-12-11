@@ -38,7 +38,7 @@ python main.py
 
 ```bash
 python calculate_performance.py [DATASET] [PATH TO FILES FOR NEW PAIRS] [HYBEA OR ITS' VARIATION]
-# e.g.
+# e.g
 python calculate_performance.py D_W_15K_V2 experiments/D_W_15K_V2_Hybea/ Hybea
 ```
 
