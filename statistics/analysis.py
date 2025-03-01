@@ -94,7 +94,7 @@ def max_comp(kg_mdi):
 
 
 datasets = "D_W_15K_V1"
-for name in ["D_W_15K_V1", "D_W_15K_V2", "SRPRS_D_W_15K_V1", "SRPRS_D_W_15K_V2"]:
+for name in ["ICEW_YAGO"]:
 
     path = "../knowformer_data/" + name +"/"
 

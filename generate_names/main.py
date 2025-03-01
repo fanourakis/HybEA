@@ -10,4 +10,4 @@ if __name__ == "__main__":
     
     run_name_analysis()
     run_prioritize()
-    run_gen_sent_embs()
+    # run_gen_sent_embs()

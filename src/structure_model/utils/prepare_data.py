@@ -44,8 +44,14 @@ def prepare_entity_alignment_data(args, new_pairs):
             sup_ents = read_entity_paris(sup_new_ents_path)
             t_s_map = {}
             for s, t in sup_ents:
-                assert t not in t_s_map.keys()
+                # assert t not in t_s_map.keys()
                 t_s_map[t] = s
+            # for s, t in sup_ents:
+            #     assert t not in t_s_map.keys()
+            #     if t not in t_s_map.keys():
+            #         t_s_map[t] = s
+            #         continue
+                # t_s_map[t] = s
             train_triples = s_triples.copy()
             for t_triple in t_triples:
                 t_triple_h, t_triple_r, t_triple_t = t_triple
@@ -55,7 +61,8 @@ def prepare_entity_alignment_data(args, new_pairs):
             assert len(train_triples) == len(s_triples) + len(t_triples)
             write_triples(train_new_triples_path_, train_triples, is_add_mask=True)
 
-        merge(train_new_triples_path, s_triples_path, t_triples_path, sup_new_ents_path)
+        # check
+        merge(train_new_triples_path, s_triples_path, t_triples_path, sup_ents_path)
 
     else:
 
@@ -66,7 +73,9 @@ def prepare_entity_alignment_data(args, new_pairs):
                 sup_ents = read_entity_paris(sup_ents_path_)
                 t_s_map = {}
                 for s, t in sup_ents:
-                    assert t not in t_s_map.keys()
+                    # if t not in t_s_map.keys():
+                    #     print(t)
+                    # assert t not in t_s_map.keys()
                     t_s_map[t] = s
                 train_triples = s_triples.copy()
                 for t_triple in t_triples:
@@ -95,6 +104,19 @@ def prepare_entity_alignment_data(args, new_pairs):
                 entities_set.add(label)
             else:
                 relations_set.add(label)
+
+    ref_ents_path = os.path.join(args.dataset_root_path, args.dataset, "ref_ents.txt")
+    with open(ref_ents_path, "r") as fp:
+        for line in fp:
+            entities_set.add(line.split("\t")[0])
+            entities_set.add(line.split("\t")[1].rstrip())
+
+
+    ref_ents_path = os.path.join(args.dataset_root_path, args.dataset, "valid_ents.txt")
+    with open(ref_ents_path, "r") as fp:
+        for line in fp:
+            entities_set.add(line.split("\t")[0])
+            entities_set.add(line.split("\t")[1].rstrip())
 
     def custom_sort_key(entity):
         if 'http' in entity:
@@ -127,10 +149,30 @@ def prepare_entity_alignment_data(args, new_pairs):
             return 1
         else:
             return 2
+        
+    def custom_sort_icew_wiki(entity):
+        if 'https://en.wikipedia.org/wiki/' in entity:
+            return 1
+        else:
+            return 0
+        
+    def custom_sort_icew_yago(entity):
+        if 'http://yago-knowledge.org/resource/' in entity:
+            return 1
+        else:
+            return 0
 
     entities_list = sorted(list(entities_set))
     relations_list = sorted(list(relations_set))
-
+    
+    if args.dataset == "ICEW_WIKI":
+        entities_list = sorted(list(entities_set), key=custom_sort_icew_wiki)
+        relations_list = sorted(list(relations_set), key=custom_sort_icew_wiki)
+        
+    if args.dataset == "ICEW_YAGO":
+        entities_list = sorted(list(entities_set), key=custom_sort_icew_yago)
+        relations_list = sorted(list(relations_set), key=custom_sort_icew_yago)
+    
     if args.dataset == "BBC_DB":
         entities_list = sorted(list(entities_set), key=custom_sort_key)
         relations_list = sorted(list(relations_set), key=custom_sort_key)
@@ -153,3 +195,4 @@ def prepare_entity_alignment_data(args, new_pairs):
         write_vocab_path(vocab_path, entities_list, relations_list)
     else:
         assert args.vocab_size == len(load_vocab(vocab_path))
+    # exit()

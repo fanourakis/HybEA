@@ -98,6 +98,42 @@ def run_prioritize():
             # path to dataframes with entity names
             kg1_dest_path = "entity_names/" + dataset + "/DBpedia_names.xlsx"
             kg2_dest_path = "entity_names/" + dataset + "/Wikidata_names.xlsx"
+    
+    elif dataset == "ICEW_WIKI":
+            url_priority_1 = True
+            url_priority_2 = True
+
+            random_init_flag_1 = False
+            random_init_flag_2 = False
+
+            prior_attr_1 = []
+            prior_attr_2 = []
+
+            # paths to dataframes exported by name_analysis.py
+            kg1_src_path = "entity_names/" + dataset + "/icew_analysis.xlsx"
+            kg2_src_path = "entity_names/" + dataset + "/wiki_analysis.xlsx"
+
+            # path to dataframes with entity names
+            kg1_dest_path = "entity_names/" + dataset + "/icew_names.xlsx"
+            kg2_dest_path = "entity_names/" + dataset + "/wiki_names.xlsx"
+
+    elif dataset == "ICEW_YAGO":
+            url_priority_1 = True
+            url_priority_2 = True
+
+            random_init_flag_1 = False
+            random_init_flag_2 = False
+
+            prior_attr_1 = []
+            prior_attr_2 = []
+
+            # paths to dataframes exported by name_analysis.py
+            kg1_src_path = "entity_names/" + dataset + "/icew_analysis.xlsx"
+            kg2_src_path = "entity_names/" + dataset + "/yago_analysis.xlsx"
+
+            # path to dataframes with entity names
+            kg1_dest_path = "entity_names/" + dataset + "/icew_names.xlsx"
+            kg2_dest_path = "entity_names/" + dataset + "/yago_names.xlsx"
 
     elif dataset == "BBC_DB":
 

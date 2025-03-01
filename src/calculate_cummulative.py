@@ -19,9 +19,9 @@ def measures(DATASET, model, iteration, MYPATH):
     newp_list = [ pair[0] for pair in newp]
     
     e1_proposed_pairs = set(newp_list)
-
     correct_proposed_pairs = e1_proposed_pairs.intersection(set(ents_1))
-
+    print(len(e1_proposed_pairs))
+    print(len(ents_1))
     fp = set()
     for e1 in e1_proposed_pairs:
         if e1 not in ents_1:
@@ -62,7 +62,7 @@ def calc_measures(DATASET, MYPATH):
             e1 = line.split("\t")[0]
             e2 = line.split("\t")[1].rstrip()
             test_set.append((e1, e2))
-        
+    
     ents_1 = [e1 for e1,e2 in test_set]
     ents_2 = [e2 for e1,e2 in test_set]
     
@@ -73,14 +73,19 @@ def calc_measures(DATASET, MYPATH):
         index = 0
         while os.path.exists(MYPATH + "/" + "rec_new_pairs_from_" + ch_model + str(index) + ".pickle"):
             index += 1
+        print(index)
 
         print("Model: " + ch_model)
-        for i in range(0, index - 1):
+        if ch_model == "attr" && (DATASET == "ICEW_WIKI" or DATASET == "ICEW_YAGO)":
+            dif = 1
+        else:
+            dif = 0
+        for i in range(0, index - dif):
             # print("iteration: " + str(i))
             iter_new_pairs = measures(DATASET, ch_model, i, MYPATH)
             e1_pr_pairs = e1_pr_pairs.union(iter_new_pairs)
             # print("-------")
-
+            
         tp = e1_pr_pairs.intersection(set(ents_1))
         fp = set()
         for e1 in e1_pr_pairs:
@@ -100,7 +105,9 @@ def calc_measures(DATASET, MYPATH):
         # print("fp: " + str(len(fp)))
         # print("tn: " + str(len(tn)))
         # print("fn: " + str(len(fn)))
-    
+        # if len(tp) == 0 and len(fp) == 0:
+        #     print("no proposed pairs")
+        #     continue
         precision = len(tp) / (len(tp) + len(fp))
         cpr += precision
         recall = len(tp) / (len(tp) + len(fn))

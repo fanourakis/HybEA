@@ -1,3 +1,4 @@
+# attribute model param
 print("In params:")
 
 CUDA_NUM = 1 # used GPU num
@@ -18,8 +19,8 @@ TEST_BATCH_SIZE = 128
 
 FOLD = "2"
 
-# Choose between D_W_15K_V1, D_W_15K_V2, SRPRS_D_W_15K_V1, SRPRS_D_W_15K_V2, BBC_DB, fr_en, ja_en, zh_en
-DATASET = "D_W_15K_V2"
+# Choose between D_W_15K_V1, D_W_15K_V2, SRPRS_D_W_15K_V1, SRPRS_D_W_15K_V2, BBC_DB
+DATASET = "D_W_15K_V1"
 
 CSLS = 2
 
@@ -55,5 +56,14 @@ elif DATASET == "zh_en":
     TOPK = 1000
     INPUT_SIZE_1 = 8183
     INPUT_SIZE_2 = 7170
+elif DATASET == "ICEW_WIKI":
+    TOPK = 507
+    INPUT_SIZE_1 = 1
+    INPUT_SIZE_2 = 1
+elif DATASET == "ICEW_YAGO":
+    TOPK = 300
+    INPUT_SIZE_1 = 1
+    INPUT_SIZE_2 = 1
+
 
 DATA_PATH = r"../attribute_data/" + DATASET + "/"

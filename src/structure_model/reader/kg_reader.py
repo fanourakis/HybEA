@@ -21,7 +21,7 @@ class KGDataReader(object):
         examples = []
         with open(input_file, encoding="utf-8") as f:
             for line in f:
-                tokens = line.strip().split()
+                tokens = line.strip().split("\t")
                 if tokens[-1].startswith("MASK"):
                     token_seq_ids = convert_tokens_to_ids(self.vocab, tokens[:-1])
                     self.seq_len = max(self.seq_len, len(token_seq_ids))

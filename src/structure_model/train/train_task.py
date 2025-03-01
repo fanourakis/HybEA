@@ -40,6 +40,9 @@ def entity_alignment_train(args, my_model, logger):
         epoch_loss = list()
         epoch_another_loss = list()
         my_model.train()
+        # eval_hits1_performance, _ = entity_alignment_test(args, my_model, logger, csls=CSLS, valid=True)
+        # _, _ = entity_alignment_test(args, my_model, logger, csls=0)
+        # exit()
 
         for batch in train_data_reader.data_generator():
             mask_index = -1

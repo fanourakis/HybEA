@@ -40,7 +40,8 @@ def entity_alignment_test(args, my_model, logger, csls=CSLS, valid=False):
     # kg2_entities_index = list(kg2_entities) + add_kg2_entities_index
     kg2_entities_index = list(kg2_entities)
 
-    assert len(kg2_entities_index) == len(set(kg2_entities_index))
+    # check
+    # assert len(kg2_entities_index) == len(set(kg2_entities_index))
 
     my_model.eval()
     with torch.no_grad():

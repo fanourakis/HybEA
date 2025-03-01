@@ -1,4 +1,5 @@
-DATASET = "D_W_15K_V2"
+# structure model param
+DATASET = "D_W_15K_V1"
 
 if DATASET == "D_W_15K_V1":
     KG1_PATH_FOR_NAMES = 'DBpedia_names.xlsx'
@@ -24,10 +25,16 @@ elif DATASET == "ja_en":
 elif DATASET == "zh_en":
     KG1_PATH_FOR_NAMES = 'zh_names.xlsx'
     KG2_PATH_FOR_NAMES = 'en_names.xlsx'
+elif DATASET == "ICEW_WIKI":
+    KG1_PATH_FOR_NAMES = 'icew_names.xlsx'
+    KG2_PATH_FOR_NAMES = 'wiki_names.xlsx'
+elif DATASET == "ICEW_YAGO":
+    KG1_PATH_FOR_NAMES = 'icew_names.xlsx'
+    KG2_PATH_FOR_NAMES = 'yago_names.xlsx'
 
 TASK = "entity-alignment"
 
-RANDOM_INITIALIZATION = True
+RANDOM_INITIALIZATION = False
 if RANDOM_INITIALIZATION:
     HIDDEN_SIZE = 256
 else:
@@ -83,3 +90,9 @@ elif DATASET == "ja_en":
 elif DATASET == "zh_en":
     VOC_LIM_1 = 19488
     VOC_LIM_2 = 36060
+elif DATASET == "ICEW_WIKI":
+    VOC_LIM_1 = 11147
+    VOC_LIM_2 = 25979
+elif DATASET == "ICEW_YAGO":
+    VOC_LIM_1 = 26954
+    VOC_LIM_2 = 44443

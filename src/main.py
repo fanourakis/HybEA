@@ -2,18 +2,19 @@ from attribute_model.attr_main import *
 from attribute_model.utils.Read_data_func import *
 from structure_model.structure_main import *
 from structure_model.reader.helper import *
+from structure_model.rrea.rrea_main import *
 import torch
 import os
 import matplotlib.pyplot as plt
 import sys
 import pickle
-from Param import MODE, DATA
+from Param import MODE, DATA, STRUCTURAL_MODEL
 
 def recreate_folder(folder_path):
     # Check if the folder exists
     if os.path.exists(folder_path):
         print("Folder already exists")
-        exit()
+        # exit()
         # for filename in os.listdir(folder_path):
         #     file_path = os.path.join(folder_path, filename)
         #     try:
@@ -51,17 +52,15 @@ def main():
     dataset = DATA
     print(dataset)
     
-    MYPATH = "experiments/" + dataset + "_" + mode
+    MYPATH = "experiments/" + dataset + "_" + STRUCTURAL_MODEL + "_" + mode
+
     recreate_folder(MYPATH)
 
     if mode == "Hybea":
         turn = 2
         stop_structure = False
         stop_attribute = False
-    elif mode == "Hybea_light":
-        turn = 8
-        stop_structure = False
-        stop_attribute = False
+
     elif mode == "Hybea_struct_first":
         turn = 1
         stop_structure = False
@@ -180,17 +179,25 @@ def main():
             newp = set(newp_attr).union(set(newp_struct))
             print(len(newp))    
 
-            
-            res_mat_1, res_mat_2, ents_1, ents_2, vocab, epoch_loss_list, hits_1_list = run_structure_model(set(newp))
-
-            results = reciprocity(ents_1, ents_2, res_mat_1, res_mat_2)
-                
-            vocab = {v: k for k, v in vocab.items()}
-            for pairs in results:
+            if STRUCTURAL_MODEL == "Knowformer":
+                res_mat_1, res_mat_2, ents_1, ents_2, vocab, epoch_loss_list, hits_1_list = run_structure_model(set(newp))
+                results = reciprocity(ents_1, ents_2, res_mat_1, res_mat_2)
                     
-                if vocab[get_item(pairs[0])] not in added_ents_of_KG1:
-                    added_ents_of_KG1.add(vocab[get_item(pairs[0])])
-                    new_pairs.add((vocab[get_item(pairs[0])], vocab[get_item(pairs[1])]))
+                vocab = {v: k for k, v in vocab.items()}
+                for pairs in results:
+                        
+                    if vocab[get_item(pairs[0])] not in added_ents_of_KG1:
+                        added_ents_of_KG1.add(vocab[get_item(pairs[0])])
+                        new_pairs.add((vocab[get_item(pairs[0])], vocab[get_item(pairs[1])]))
+            
+            elif STRUCTURAL_MODEL == "RREA":
+                res_mat_1, res_mat_2, ents_1, ents_2 = run_rrea_structural(newp)
+                results = reciprocity(ents_1, ents_2, res_mat_1, res_mat_2)
+                for pairs in results:
+
+                    if ent_ids_1[pairs[0]] not in added_ents_of_KG1:
+                        added_ents_of_KG1.add(ent_ids_1[pairs[0]])
+                        new_pairs.add((ent_ids_1[pairs[0]], ent_ids_2[pairs[1]]))
             
             print(len(new_pairs))
             

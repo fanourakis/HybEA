@@ -31,6 +31,8 @@ def load_vocab(vocab_path):
 def convert_tokens_to_ids(vocab, tokens):
     output = []
     for item in tokens:
+        if item not in vocab:
+            print(item)
         output.append(vocab[item])
     return output
 
@@ -39,7 +41,7 @@ def read_triples(triples_path):
     res = []
     with open(triples_path, encoding="utf-8") as f:
         for line in f:
-            l = line.strip().split()
+            l = line.strip().split("\t")
             res.append(tuple(l))
     return res
 
@@ -59,6 +61,6 @@ def read_entity_paris(pairs_path):
     res = []
     with open(pairs_path, encoding="utf-8") as f:
         for line in f:
-            e1, e2 = line.strip().split()
+            e1, e2 = line.strip().split("\t")
             res.append((e1, e2))
     return res

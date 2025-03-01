@@ -126,7 +126,17 @@ def run_name_analysis():
 
         kg1_dest_path = "entity_names/" + dataset + "/zh_analysis.xlsx"
         kg2_dest_path = "entity_names/" + dataset + "/en_analysis.xlsx"
-    
+    elif dataset == "ICEW_WIKI":
+        attrs_1 = ["has_name"]
+        attrs_2 = ["has_name"]
+        kg1_dest_path = "entity_names/" + dataset + "/icew_analysis.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/wiki_analysis.xlsx"
+    elif dataset == "ICEW_YAGO":
+        attrs_1 = ["has_name"]
+        attrs_2 = ["has_name"]
+        kg1_dest_path = "entity_names/" + dataset + "/icew_analysis.xlsx"
+        kg2_dest_path = "entity_names/" + dataset + "/yago_analysis.xlsx"
+        
     create_folder_if_not_exists("entity_names/" + dataset)
 
     print("Preparing name analysis on KG1 ...")
