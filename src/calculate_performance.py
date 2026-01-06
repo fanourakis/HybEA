@@ -47,7 +47,8 @@ def calc_hits(DATASET, MYPATH, mode):
         
     if mode == "Hybea_basic" or mode == "Hybea_basic_structure_first":
         index = 1
-    
+
+    # Load newly suggested matches by structural component
     newp_struct_list = []
     for i in range(0, index):
         with open(MYPATH + "rec_new_pairs_from_structure" + str(i) + ".pickle", "rb") as file:
@@ -64,6 +65,7 @@ def calc_hits(DATASET, MYPATH, mode):
     if mode == "Hybea_basic" or mode == "Hybea_basic_structure_first":
         index = 1
 
+    # Load newly suggested matches by factual component
     newp_attr_list = []
     for i in range(0, index):
         with open(MYPATH + "rec_new_pairs_from_attr" + str(i) + ".pickle", "rb") as file:
@@ -84,6 +86,8 @@ def calc_hits(DATASET, MYPATH, mode):
     MRR = 0
     for i in range(len(ents_1)):
 
+        # If entities have already been matched by either structural or factual component
+        # increase the metrics by one and continue
         if ents_1[i] in newp_struct_list or ents_1[i] in newp_attr_list:
             c += 1
             hits_1 +=1
@@ -91,7 +95,11 @@ def calc_hits(DATASET, MYPATH, mode):
             MRR += 1
             cn += 1
             continue
-        
+
+        # If entities have not been matched (they are not included in newly suggested matches)
+        # use the similarity matrices to find the rank index of their matching entity
+        # i.e., for every node in KG1 that is not included in the newly suggested matches
+        # suggest as its match the most similar entity from KG2 using the sim. matrix (rank_index == 0)
         rank = (-res_mat_1[i, :]).argsort()
         rank_index = np.where(rank == i)[0][0]
         if rank_index == 0:
