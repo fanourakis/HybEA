@@ -85,5 +85,4 @@ python name_sim.py
 ```
 
 ## Reference
-> Nikolaos Fanourakis, Fatia Lekbour, Guillaume Renton, Vasilis Efthymiou, Vassilis Christophides. **HybEA: Hybrid Models for Entity Alignment**. In *Proceedings of the 27th International Conference on Web Information Systems Engineering (WISE)*, Venice, Italy, November 1–5, 2026.  
-> [[PDF]]([https://arxiv.org/pdf/2407.02862](https://github.com/fanourakis/HybEA/blob/main/HybEA__Hybrid_Models_for_Entity_Alignment__WISE2026.pdf))
+Nikolaos Fanourakis, Fatia Lekbour, Guillaume Renton, Vasilis Efthymiou, Vassilis Christophides. **HybEA: Hybrid Models for Entity Alignment**. In *Proceedings of the 27th International Conference on Web Information Systems Engineering (WISE)*, Venice, Italy, November 1–5, 2026.  [[PDF]]([https://arxiv.org/pdf/2407.02862](https://github.com/fanourakis/HybEA/blob/main/HybEA__Hybrid_Models_for_Entity_Alignment__WISE2026.pdf))
